@@ -34,8 +34,8 @@ function runGame(gameType) {
     let num1, num2;
 
     function getTwoNumbers() {
-        num1 = Math.floor(Math.random() * 25) + 1;
-        num2 = Math.floor(Math.random() * 25) + 1;
+        num1 = Math.floor(Math.random() * 300) + 1;
+        num2 = Math.floor(Math.random() * 300) + 1;
     }
 
     switch (gameType) {
