@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName('button');
 
     for (let button of buttons) {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             if (this.getAttribute('data-type') === 'submit') {
-               checkAnswer();
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute('data-type');
                 runGame(gameType)
@@ -15,29 +15,48 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
-    // runGame("addition");
+    document.getElementById('answer-box').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            checkAnswer();
+        }
+    })
 })
 
 /** 
  * The main game "loop", called when the script is first loaded
  * and after the user's answer has been processed
-*/
+ */
 function runGame(gameType) {
 
-    let num1 = Math.floor(Math.random() * 25) +1 ;
-    let num2 = Math.floor(Math.random() * 25) +1 ;
+    document.getElementById('answer-box').value = '';
+    document.getElementById('answer-box').focus();
+
+    let num1, num2;
+
+    function getTwoNumbers() {
+        num1 = Math.floor(Math.random() * 25) + 1;
+        num2 = Math.floor(Math.random() * 25) + 1;
+    }
 
     switch (gameType) {
         case "addition":
+            getTwoNumbers();
             displayAdditionQuestion(num1, num2);
             break;
         case "subtract":
+            do {
+                getTwoNumbers();
+            } while (num2 > num1)
             displaySubtractQuestion(num1, num2);
             break;
         case "multiply":
+            getTwoNumbers();
             displayMultiplyQuestion(num1, num2);
             break;
         case "division":
+            do {
+                getTwoNumbers();
+            } while ((num1 % num2 !== 0) || (num1 / num2 === 1) || (num2 === 1))
             displayDivisionQuestion(num1, num2);
             break;
         default:
