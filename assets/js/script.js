@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
             checkAnswer();
         }
     })
+
+    runGame('addition');
 })
 
 /** 
@@ -34,8 +36,8 @@ function runGame(gameType) {
     let num1, num2;
 
     function getTwoNumbers() {
-        num1 = Math.floor(Math.random() * 300) + 1;
-        num2 = Math.floor(Math.random() * 300) + 1;
+        num1 = Math.floor(Math.random() * 80) + 1;
+        num2 = Math.floor(Math.random() * 30) + 1;
     }
 
     switch (gameType) {
@@ -75,6 +77,7 @@ function checkAnswer() {
         incrementWrongAnswer();
         alert(`incorrect answer, the correct answer is: ${correctAnswer}!`)
     }
+    document.getElementById('answer-box').value = '';
 }
 /**
  * Gets the operands (the numbers) and the operator (plus, minus etc)
